@@ -1,7 +1,7 @@
 #main-title { color: rgb(254, 0, 0); }
 .my-style { color: rgb(255, 0, 195); }
 body{   
-    background-color: rgb(140, 213, 211);
+    background-color: rgb(222, 222, 222);
 }
 h1{
    font-size: 50px;
@@ -22,5 +22,5 @@ ul{
 img{
     margin: 5px;
     padding: 15px;
-    border: 20px solid rgb(103, 53, 141);
+    border: 20px solid rgb(236, 0, 0);
 }
