@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript DOM & Event Lab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>ฟอร์มลงทะเบียนสมาชิก (Registration Form)</h2>
+
+    <form id="regForm">
+        <div class="form-group">
+            <label>ชื่อ-นามสกุล:</label>
+            <input type="text" id="fullname" class="input-field" placeholder="กรอกชื่อ-นามสกุล">
+            <span id="nameError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>แผนก/สาขา:</label>
+            <select id="department" class="input-field">
+                <option value="">-- เลือกแผนก --</option>
+                <option value="IT">เทคโนโลยีสารสนเทศ</option>
+                <option value="MKT">การตลาด</option>
+                <option value="HR">ทรัพยากรบุคคล</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>ระดับประสบการณ์:</label><br>
+            <input type="radio" name="level" value="Junior" class="user-level">Junior
+            <input type="radio" name="level" value="Senior" class="user-level">Senior
+        </div>
+
+        <div class="form-group">
+            <label>ทักษะความสามารถ(เลือกได้มากกว่า 1):</label><br>
+            <input type="checkbox" name="skills" value="HTML/CSS"> HTML/CSS
+
+            <input type="checkbox" name="skills" value="JavaScript">JavaScript
+            <input type="checkbox" name="skills" value="Database"> Database
+        </div>
+
+        <div class="form-group">
+            <label>โปรไฟล์รูปภาพ (URL):</label>
+            <input type="text" id="avatarUrl" placeholder="วางลิงกร์ูปภาพที่นี่">
+        </div>
+
+        <button type="button" id="btnPreview">ดูตัวอย่างข้อมูล</button>
+        <button type="submit" id="btnSubmit">ลงทะเบียน</button>
+    </form>
+
+    <hr>
+
+    <h3>พื้นที่แสดงผล(Preview Area)</h3>
+    <div id="previewCard" class="card">
+        <img id="avatarImg" src="https://via.placeholder.com/100" alt="Profile" width="100">
+        <h4 id="dispName">ชื่อ: -</h4>
+        <p id="dispDept">แผนก: -</p>
+        <p id="dispDetails">รายละเอียด: -</p>
+        <div id="jsonResult">
+        </div>
+    </div>
+    <!-- เขียน JavaScript ไวด้า้นล่างสุด -->
+    <script>
+        // โค้ด JavaScript ในแต่ละขอ้จะถูกเขียนบริเวณน้ี
+        console.log("----document.getElementById----:")
+        console.log(document.getElementById('btnPreview'));
+        console.log("----document.getElementsByClassName----:")
+        console.log(document.getElementsByClassName('input-field'));
+        console.log("----document.querySelector----:")
+        console.log(document.querySelector('input[name="level"]'));
+        console.log("----document.querySelectorAll----:")
+        console.log(document.querySelectorAll('input[name="skills"]'));
+        document.querySelectorAll('input[name="skills"]').forEach(input => { console.log(input); });
+
+        const btnPreview = document.getElementById('btnPreview');
+        btnPreview.addEventListener('click', function () {
+            alert("กำลังประมวลผล...");
+
+        });
+        const departmentSelect = document.getElementById('department');
+        departmentSelect.addEventListener('change', function () {
+            console.log(departmentSelect.value);
+        });
+
+        const fullnameInput = document.getElementById('fullname');
+        const nameError = document.getElementById('nameError');
+
+        fullnameInput.addEventListener('keyup', function () {
+            const num = fullnameInput.value.trim();
+            if (num.length < 3) {
+                nameError.textContent = "ชื่อต้องยาวอย่างน้อย 3 ตัวอักษร";
+            } else {
+                nameError.textContent = "";
+            }
+        });
+
+        const previewCard = document.getElementById('previewCard');
+        previewCard.addEventListener('mouseover', function () {
+            previewCard.style.backgroundColor = '#f0f8ff';
+        });
+
+        previewCard.addEventListener('mouseout', function () {
+            previewCard.style.backgroundColor = '';
+        });
+
+        const regForm = document.getElementById('regForm');
+        regForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // ยบัย้งัการ Refresh หน้าจอของ Form
+            console.log("Event Type:", event.type);
+            console.log("Target Element:", event.target);
+        });
+        const dispName = document.getElementById('dispName');
+        fullnameInput.addEventListener('input', function () {
+            dispName.innerHTML = fullnameInput.value;
+        });
+
+        function renderSkills(skillsArray) {
+            const dispDetails = document.getElementById('dispDetails');
+
+            if (skillsArray.length === 0) {
+                dispDetails.innerHTML = "รายละเอียด: ไม่มีทักษะที่เลือก";
+                return;
+            }
+
+            let listItems = '';
+            for (const skill of skillsArray) {
+                listItems += `<li>${skill}</li>`;
+            }
+
+            dispDetails.innerHTML = `รายละเอียดทักษะ:<ul>${listItems}</ul>`;
+        }
+        const mySkills = ["HTML/CSS", "JavaScript", "Database"];
+        renderSkills(mySkills);
+
+
+        const avatarUrlInput = document.getElementById('avatarUrl');
+        const avatarImg = document.getElementById('avatarImg');
+        avatarUrlInput.addEventListener('input', function () {
+            const oldUrl = avatarImg.getAttribute('src');
+            console.log('URL รูปภาพเดิมคือ:', oldUrl);
+            const newUrl = avatarUrlInput.value.trim();
+            if (newUrl !== '') {
+                avatarImg.setAttribute('src', newUrl);
+            } else {
+                avatarImg.setAttribute('src', 'https://via.placeholder.com/100');
+            }
+        });
+
+
+
+        const Result_text = document.getElementById('jsonResult');
+        regForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const input_fullname = document.getElementById('fullname').value.trim();
+            const select_department = document.getElementById('department').value;
+            const selectedLevel = document.querySelector('input[name="level"]:checked');
+            if (input_fullname === '' || select_department === '' || !selectedLevel) {
+                alert('กรุณากรอกชื่อ-นามสกุล และเลือกแผนกและตำแหน่งให้ครบถ้วน!');
+                return; 
+            }
+            const levelVal = selectedLevel.value
+            
+            const avatarVal = document.getElementById('avatarUrl').value.trim();
+            const checkedSkills = document.querySelectorAll('input[name="skills"]:checked');
+            const skillsArray = [];
+            checkedSkills.forEach(function (checkbox) {
+                skillsArray.push(checkbox.value);
+            });
+
+            const userData = {
+                fullname: input_fullname,
+                department: select_department,
+                level: levelVal,
+                skills: skillsArray,
+                avatar: avatarVal || 'https://via.placeholder.com/100'
+            };
+            console.log('ข้อมูลuserData:', userData);
+        });
+
+    </script>
+</body>
+
+</html>
