@@ -36,11 +36,28 @@ body {
   padding: 24px 16px;
 }
 
+button,
+.input-field,
+.card,
+.modal {
+  border-radius: 0;
+}
+
+.mobile-container,
+main,
+.stat-list,
+.form-group,
+.sidebar-column,
+.content-column,
+.event-list,
+.event-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .mobile-container {
   width: 100%;
   max-width: 800px;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
@@ -56,7 +73,6 @@ header h1 {
   font-size: 1.85rem;
   font-weight: 800;
   text-align: center;
-  color: var(--text-main);
 }
 
 nav {
@@ -68,7 +84,6 @@ nav {
 
 button {
   padding: 10px 20px;
-  border-radius: 0;
   border: 1px solid var(--border-color);
   background-color: var(--color-secondary);
   color: var(--bg-surface);
@@ -83,33 +98,30 @@ button {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
   width: 100%;
+  gap: 20px;
+}
+
+.card,
+.modal {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 24px;
 }
 
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 0;
-  padding: 24px;
   width: 100%;
 }
 
-.card h2 {
+.card h2,
+.modal h2 {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-main);
   margin-bottom: 16px;
-  border-bottom: none;
-  padding-bottom: 0;
 }
 
 .stat-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 4px;
 }
 
 .stat-item {
@@ -117,7 +129,7 @@ main {
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
-  padding: 8px 0;
+  padding: 4px 0;
 }
 
 .stat-value {
@@ -125,16 +137,13 @@ main {
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 16px;
+  gap: 4px;
+  margin-bottom: 10px;
 }
 
 .form-group label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-main);
 }
 
 .input-field {
@@ -142,7 +151,6 @@ main {
   height: 42px;
   padding: 0 12px;
   border: 1px solid var(--border-color);
-  border-radius: 0;
   background-color: var(--bg-surface);
   color: var(--text-main);
   font-size: 0.95rem;
@@ -166,48 +174,32 @@ select.input-field {
 }
 
 .sidebar-column {
-  display: flex;
-  flex-direction: column;
   gap: 8px;
 }
 
 .content-column {
-  display: flex;
-  flex-direction: column;
   gap: 20px;
-}
-
-#activity-list-title {
-  background: none;
-  border: none;
-  padding: 0;
 }
 
 .section-heading {
   font-size: 1.35rem;
   font-weight: 800;
   text-align: center;
-  color: var(--text-main);
   margin-top: 10px;
-  border-bottom: none;
-  padding-bottom: 0;
 }
 
 .event-list {
-  display: flex;
-  flex-direction: column;
   gap: 16px;
 }
 
 .event-card {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .event-title {
   font-size: 1.1rem;
   font-weight: 700;
+  margin-bottom: 2px;
 }
 
 .event-category {
@@ -215,6 +207,7 @@ select.input-field {
   color: var(--color-primary);
   font-size: 0.8rem;
   font-weight: 700;
+  margin-bottom: 2px;
 }
 
 .event-speaker,
@@ -222,16 +215,17 @@ select.input-field {
 .event-seats {
   font-size: 0.9rem;
   color: var(--text-muted);
+  line-height: 1.25;
 }
 
 .event-description {
   font-size: 0.95rem;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .register-btn {
   align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .register-btn:disabled {
@@ -255,20 +249,10 @@ select.input-field {
 }
 
 .modal {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 0;
-  padding: 24px;
   width: 100%;
   max-width: 420px;
   max-height: 90vh;
   overflow-y: auto;
-}
-
-.modal h2 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 16px;
 }
 
 .field-error {
@@ -289,6 +273,21 @@ select.input-field {
 @media (min-width: 900px) {
   .mobile-container {
     max-width: 1100px;
+  }
+
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    text-align: left;
+  }
+
+  nav {
+    justify-content: flex-end;
+    width: auto;
   }
 
   main {
