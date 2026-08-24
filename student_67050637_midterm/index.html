@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Event Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="mobile-container">
+    <header>
+      <h1>Smart Event Hub</h1>
+      <nav aria-label="เมนูหลัก">
+        <button type="button" id="ChangeMode"> Dark Mode</button>
+        <button type="button" id="AddEvent">+ เพิ่มกิจกรรมใหม่</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card" id="activity-detail">
+        <h2>สถิติภาพรวม</h2>
+        <div class="stat-list">
+          <div class="stat-item">
+            <span>กิจกรรมทั้งหมด:</span>
+            <span class="stat-value" id="stat-total">0</span>
+          </div>
+          <div class="stat-item">
+            <span>ลงทะเบียนแล้ว:</span>
+            <span class="stat-value" id="stat-registered">0</span>
+          </div>
+          <div class="stat-item">
+            <span>ที่นั่งว่างรวม:</span>
+            <span class="stat-value" id="stat-available">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="activity-filter">
+        <h2>ค้นหาและกรองข้อมูล</h2>
+        <form action="#" method="GET">
+          <div class="form-group">
+            <label for="search-keyword">ค้นหากิจกรรม / วิทยากร:</label>
+            <input type="text" id="search-keyword" name="keyword" class="input-field" placeholder="พิมพ์คำค้นหา...">
+          </div>
+
+          <div class="form-group">
+            <label for="filter-category">ประเภทกิจกรรม:</label>
+            <select id="filter-category" name="category" class="input-field">
+              <option value="Business">Business</option>
+              <option value="Tech">Tech</option>
+              <option value="Design">Design</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sort-order">เรียงลำดับตาม:</label>
+            <select id="sort-order" name="sort" class="input-field">
+              <option value="date-desc">วันที่ (มากไปน้อย)</option>
+              <option value="date-asc">วันที่ (น้อยไปมาก)</option>
+              <option value="seat-desc">จำนวนที่นั่ง (มากไปน้อย)</option>
+            </select>
+          </div>
+
+          <button type="reset" class="btn-reset">คืนค่าข้อมูลเริ่มต้น</button>
+        </form>
+      </section>
+
+      <section id="activity-list-title">
+        <h2 class="section-heading">รายการกิจกรรมและเวิร์กช็อป</h2>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

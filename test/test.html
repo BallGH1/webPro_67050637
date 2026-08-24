@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        table,td  { 
+            border: 1px solid black;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cs.css">
+</head>
+<body>
+    <h1>Hello everyone</h1>
+    <script>console.log("Hello word !!!")</script>
+    <ul>
+        <li>Skill : </li>
+    </ul>
+    <br>
+    <table style="width: 100%" > 
+        <tr>
+            <td>ชื่อ</td>
+            <td>นามสกุล</td>
+            <td>สถานศึกษา</td>
+        </tr>
+        <tr>
+            <td>นาย อัสนัย</td>
+            <td>เมืองรอด</td>
+            <td>KMITL</td>
+        </tr>
+    </table>
+
+    <button type="submit" id="buttonsummit">ส่งข้อมูล</button>
+    <script>
+        const eventButton = document.getElementById('buttonsummit');
+        eventButton.addEventListener('click', function() { 
+            alert("กำลังส่งข้อมูล")
+        })
+    </script>
+
+
+</body>
+
+
+</html>
