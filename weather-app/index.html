@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wether Dashboard</title>
+    <title>Weather Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>🌤 Wether Dashboard</h1>
-    <div>
-        <input type="text" id="city-input" placeholder="พิมพ์ชื่อเมือง...">
-        <button onclick="search()">ค้นหา</button>
-        <p id="error-message" style="color: red;"></p>
-    </div> 
-    <div class="weather-card">
-        <p><span id ="temp">--</span> °C</p>
-        <p><span id = "city-name">--</span>,<span id = "country">--</span></p>
-        <p><span id = "humidity">--</span>💧%</p>
-        <p><span id = "wind-speed">--</span>💨 m/s</p>
-        
-    </div>
-    <script src = "app.js"></script>
+    <div class="container">
+        <div class="header">
+            <h1>⛅ Weather Dashboard</h1>
+        </div>
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="ค้นหาเมือง (เช่น Bangkok, Chiang Mai...)">
+            <button id="searchBtn">ค้นหา</button>
+        </div>
 
+        <div id="loading" class="hidden">กำลังโหลดข้อมูล...</div>
+        <div id="weatherResult" class="hidden"></div>
+        <div id="error" class="hidden"></div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
