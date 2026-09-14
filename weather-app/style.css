@@ -1,0 +1,16 @@
+.weather-card { 
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    padding-left: 50px;
+    
+}
+#temp,#city-name,#country { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#city-input  {
+    width: 30%;
+    height: 100%;
+}
